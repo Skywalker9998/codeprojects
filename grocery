@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class GroceryBillCalculator {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variables for price, quantity, and calculations
+        double price1, price2, price3;
+        int quantity1, quantity2, quantity3;
+        double subtotal, discount, tax, finalTotal;
+
+        // Input price and quantity for each item
+        System.out.print("Enter the price of item 1: ");
+        price1 = input.nextDouble();
+        System.out.print("Enter the quantity of item 1: ");
+        quantity1 = input.nextInt();
+
+        System.out.print("Enter the price of item 2: ");
+        price2 = input.nextDouble();
+        System.out.print("Enter the quantity of item 2: ");
+        quantity2 = input.nextInt();
+
+        System.out.print("Enter the price of item 3: ");
+        price3 = input.nextDouble();
+        System.out.print("Enter the quantity of item 3: ");
+        quantity3 = input.nextInt();
+
+        // Calculate subtotal
+        subtotal = (price1 * quantity1) + (price2 * quantity2) + (price3 * quantity3);
+
+        // Calculate discount (5%)
+        discount = subtotal * 0.05;
+
+        // Calculate sales tax (12% after applying discount)
+        tax = (subtotal - discount) * 0.12;
+
+        // Calculate final total
+        finalTotal = (subtotal - discount) + tax;
+
+        // Output results
+        System.out.printf("Subtotal: PHP %.2f\n", subtotal);
+        System.out.printf("Discount: PHP %.2f\n", discount);
+        System.out.printf("Sales Tax: PHP %.2f\n", tax);
+        System.out.printf("Final Total: PHP %.2f\n", finalTotal);
+
+        // Close the scanner
+        input.close();
+    }
+}
