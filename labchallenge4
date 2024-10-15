@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class GroceryStoreDiscountCalculator {
+    public static void main(String[] args) {
+        Scanner sC = new Scanner(System.in);
+        
+        // Prompt user for the total purchase amount
+        System.out.print("Enter the total purchase amount (PHP): ");
+        double totalAmount = sC.nextDouble();
+        
+        // Initialize discount and final price
+        double discount = 0.0;
+        double finalPrice;
+
+        // Determine discount based on total purchase amount
+        if (totalAmount < 1000) {
+            discount = 0.0; // No discount
+        } else if (totalAmount >= 1000 && totalAmount <= 5000) {
+            discount = totalAmount * 0.05; // 5% discount
+        } else if (totalAmount >= 5001 && totalAmount <= 10000) {
+            discount = totalAmount * 0.10; // 10% discount
+        } else {
+            discount = totalAmount * 0.15; // 15% discount
+        }
+
+        // Calculate final price after discount
+        finalPrice = totalAmount - discount;
+
+        // Display results
+        System.out.printf("Discount applied: %.2f PHP (%.0f%%)\n", discount, (discount / totalAmount) * 100);
+        System.out.printf("Final price after discount: %.2f PHP\n", finalPrice);
+
+        sC.close();
+    }
+}
