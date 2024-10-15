@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class RestaurantOrderSystem {
+    public static void main(String[] args) {
+        Scanner sC = new Scanner(System.in);
+        
+        // Menu items
+        System.out.println("MENU");
+        System.out.println("1. Burger    - PHP 100");
+        System.out.println("2. Fries     - PHP 50");
+        System.out.println("3. Soda      - PHP 30");
+        System.out.println("4. Ice Cream - PHP 45");
+        System.out.println("5. Exit");
+        
+        // Prompt user for menu selection
+        System.out.print("Enter the menu number of your choice: ");
+        int choice = sC.nextInt();
+        
+        // Variable to store item price and total amount
+        double price = 0.0;
+        String itemName = "";
+        
+        
+        switch (choice) {
+            case 1:
+                itemName = "Burger";
+                price = 100.0;
+                break;
+            case 2:
+                itemName = "Fries";
+                price = 50.0;
+                break;
+            case 3:
+                itemName = "Soda";
+                price = 30.0;
+                break;
+            case 4:
+                itemName = "Ice Cream";
+                price = 45.0;
+                break;
+            case 5:
+                System.out.println("Exiting the program.");
+                sC.close();
+                return; // Exit the program
+            default:
+                System.out.println("Invalid choice. Please select a valid menu item.");
+                sC.close();
+                return;
+        }
+        
+        // Ask for the quantity
+        System.out.print("Enter the quantity: ");
+        int quantity = sC.nextInt();
+        
+        // Calculate the total amount
+        double totalAmount = price * quantity;
+        
+        // Display the final bill
+        System.out.printf("You ordered %s.\nTotal amount: %.2f PHP\n", itemName, totalAmount);
+        
+        sC.close();
+    }
+}
