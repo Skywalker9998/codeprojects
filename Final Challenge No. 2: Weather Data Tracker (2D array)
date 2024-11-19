@@ -1,0 +1,62 @@
+
+package weatherdatatracker;
+
+import java.util.Scanner;
+
+public class Weatherdatatracker {
+
+    
+    public static void main(String[] args) {
+    
+        final int numCities = 3;
+        final int numDays = 7;
+
+        // Initialize a 2D array to store temperature data
+        double[][] temperatures = new double[numCities][numDays];
+        Scanner scanner = new Scanner(System.in);
+
+        // Collect temperature data for each city
+        for (int city = 0; city < numCities; city++) {
+            System.out.println("Enter temperatures for City " + (city + 1) + ":");
+            for (int day = 0; day < numDays; day++) {
+                while (true) {
+                    System.out.print("Day " + (day + 1) + ": ");
+                    if (scanner.hasNextDouble()) {
+                        temperatures[city][day] = scanner.nextDouble();
+                        break; // Exit the loop if input is valid
+                    } else {
+                        System.out.println("Invalid input. Please enter a numeric value.");
+                        scanner.next(); // Clear the invalid input
+                    }
+                }
+            }
+        }
+
+        // Calculate average temperature and highest temperature for each city
+        double[] averages = new double[numCities];
+        double[] highestTemps = new double[numCities];
+
+        for (int city = 0; city < numCities; city++) {
+            double totalTemp = 0;
+            highestTemps[city] = temperatures[city][0]; // Initialize with the first day's temperature
+
+            for (int day = 0; day < numDays; day++) {
+                totalTemp += temperatures[city][day];
+                if (temperatures[city][day] > highestTemps[city]) {
+                    highestTemps[city] = temperatures[city][day];
+                }
+            }
+
+            averages[city] = totalTemp / numDays;
+        }
+
+        // Display results
+        for (int city = 0; city < numCities; city++) {
+            System.out.printf("%nCity %d:%n", city + 1);
+            System.out.printf("Average Temperature: %.2f%n", averages[city]);
+            System.out.printf("Highest Temperature: %.2f%n", highestTemps[city]);
+        }
+
+        scanner.close();
+    }
+}
