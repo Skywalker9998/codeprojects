@@ -1,0 +1,41 @@
+/*
+Cacabilos, LeeRogie R.
+CC2
+Retail store inventory
+November 20 2024
+final challenge number 1
+ */
+import javax.swing.JOptionPane;
+
+public class RetailStoreInventory {
+
+    public static void main(String[] args) {
+        // Step 1: Prompt the user to enter the number of products using JOptionPane
+        String numProductsString = JOptionPane.showInputDialog("Enter the number of products:");
+        int numProducts = Integer.parseInt(numProductsString); // Convert the string to an integer
+
+        // Step 2: Define arrays to store stock quantities and prices
+        int[] stockQuantities = new int[numProducts];
+        double[] prices = new double[numProducts];
+
+        // Step 3: Get input for each product's stock quantity and price using JOptionPane
+        for (int i = 0; i < numProducts; i++) {
+            String stockQuantityString = JOptionPane.showInputDialog(
+                String.format("Enter the stock quantity for product %d:", i + 1));
+            stockQuantities[i] = Integer.parseInt(stockQuantityString); // Convert string to int
+            
+            String priceString = JOptionPane.showInputDialog(
+                String.format("Enter the price for product %d:", i + 1));
+            prices[i] = Double.parseDouble(priceString); // Convert string to double
+        }
+
+        // Step 4: Calculate the total value of the stock
+        double totalValue = 0;
+        for (int i = 0; i < numProducts; i++) {
+            totalValue += stockQuantities[i] * prices[i];
+        }
+
+        // Step 5: Output the total value using JOptionPane
+        JOptionPane.showMessageDialog(null, String.format("Total value of all items in stock: $%.2f", totalValue));
+    }
+}
