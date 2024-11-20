@@ -1,0 +1,51 @@
+/*
+Cacabilos, LeeRogie R.
+CC2
+Retail store inventory
+November 20 2024
+Final Challenge No. 1: Retail Store Inventory Management
+ */
+
+import java.util.Scanner;
+
+public class RetailStoreInventoryManagement {
+    public static void main(String[] args) {
+        
+        // Version 1: predefined
+        /*
+        // Declaration of arrays
+        int[] productPrices = {200, 100, 350, 320, 190, 140, 40, 50, 65, 120};
+        int[] productQuantities = {10, 6, 8, 3, 7, 9, 3, 7, 6, 1};
+        
+        // Loop through the arrays to calculate the total value and display output
+        for (int i = 0; i < 10; i++) {
+            int totalValue = productPrices[i] * productQuantities[i];
+            System.out.println("Product [" + (i + 1) + "]: Quantity: " + productQuantities[i] + ", Price: " + productPrices[i]);
+            System.out.println("Total Value [Product " + (i + 1) + "]: " + totalValue + "\n");
+        }
+        */
+        
+        // Version 2: with user input
+        // Declaration of Scanner for storing input
+        Scanner leeScan = new Scanner(System.in);
+        
+        // Initialization of arrays
+        int[] productPrices = new int[10];
+        int[] productQuantities = new int[10];
+        
+        // Loop for storing the product quantities and prices
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Enter Price for Product [" + (i + 1) + "]: ");
+            productPrices[i] = leeScan.nextInt();
+            
+            System.out.print("Enter Quantity for Product [" + (i + 1) + "]: ");
+            productQuantities[i] = leeScan.nextInt();
+        }
+        
+        // Loop through the arrays to calculate the total value and display output
+        for (int i = 0; i < 10; i++) {
+            int totalValue = productPrices[i] * productQuantities[i];
+            System.out.println("Total Value [Product " + (i + 1) + "]: " + totalValue);
+        }
+    }
+}
