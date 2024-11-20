@@ -1,0 +1,62 @@
+/*Cacabilos, LeeRogie R.
+CC2
+Retail store inventory
+November 20 2024
+final challenge number 1*/
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+public class UniversityEnrollment {
+
+    public static void main(String[] args) {
+        // Step 1: Ask how many students there are
+        String numStudentsStr = JOptionPane.showInputDialog("Enter the number of students:");
+        int numStudents = Integer.parseInt(numStudentsStr);
+
+        // Step 2: Create an array for student names and grades
+        String[] students = new String[numStudents];
+        int[][] grades = new int[numStudents][];
+
+        // Step 3: Input student names and grades
+        for (int i = 0; i < numStudents; i++) {
+            // Input student name
+            students[i] = JOptionPane.showInputDialog("Enter the name of student " + (i + 1) + ":");
+
+            // Input number of subjects for this student
+            String numSubjectsStr = JOptionPane.showInputDialog("How many subjects does " + students[i] + " have?");
+            int numSubjects = Integer.parseInt(numSubjectsStr);
+
+            grades[i] = new int[numSubjects];
+
+            // Input grades for each subject
+            for (int j = 0; j < numSubjects; j++) {
+                String gradeStr = JOptionPane.showInputDialog("Enter grade for subject " + (j + 1) + ":");
+                grades[i][j] = Integer.parseInt(gradeStr);
+            }
+        }
+
+        // Step 4: Calculate and display the average grade for each student
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < numStudents; i++) {
+            String studentName = students[i];
+            int[] studentGrades = grades[i];
+            double averageGrade = calculateAverage(studentGrades);
+            result.append(String.format("%s's average grade is: %.2f\n", studentName, averageGrade));
+        }
+
+        // Display the results in a message dialog
+        JOptionPane.showMessageDialog(null, result.toString());
+    }
+
+    // Helper method to calculate average grade
+    public static double calculateAverage(int[] grades) {
+        int sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        return (double) sum / grades.length;
+    }
+}
+
+}
