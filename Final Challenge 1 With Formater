@@ -1,0 +1,53 @@
+/*
+Cacabilos, LeeRogie R.
+CC2
+Retail store inventory
+November 20 2024
+final challenge number 1
+*/
+
+import javax.swing.JOptionPane;
+import java.text.DecimalFormat;
+
+public class RetailStoreInventoryManagement {
+
+    public static void main(String[] args) {
+        // Step 1: Prompt the user to enter the number of products using JOptionPane
+        String numProductsString = JOptionPane.showInputDialog("Enter the number of products (up to 10):");
+        int numProducts = Integer.parseInt(numProductsString); // Convert the string to an integer
+
+        // Step 2: Ensure that the number of products does not exceed 10
+        if (numProducts > 10) {
+            numProducts = 10;
+            JOptionPane.showMessageDialog(null, "The number of products cannot exceed 10. Limiting to 10.");
+        }
+
+        // Step 3: Define arrays to store stock quantities and prices
+        int[] stockQuantities = new int[numProducts];
+        double[] prices = new double[numProducts];
+
+        // Step 4: Get input for each product's stock quantity and price using JOptionPane
+        for (int i = 0; i < numProducts; i++) {
+            String stockQuantityString = JOptionPane.showInputDialog(
+            String.format("Enter the stock quantity for product %d:", i + 1));
+            stockQuantities[i] = Integer.parseInt(stockQuantityString); // Convert string to int
+            
+            String priceString = JOptionPane.showInputDialog(
+            String.format("Enter the price for product %d:", i + 1));
+            prices[i] = Double.parseDouble(priceString); // Convert string to double
+        }
+
+        // Step 5: Calculate the total value of the stock
+        double totalValue = 0;
+        for (int i = 0; i < numProducts; i++) {
+            totalValue += stockQuantities[i] * prices[i];
+        }
+
+        // Step 6: Format the total value with commas and show the message
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        String formattedTotalValue = formatter.format(totalValue);
+
+        // Step 7: Display the total value with the desired format
+        JOptionPane.showMessageDialog(null, String.format("Total value of all items in stock: PHP %s", formattedTotalValue));
+    }
+}
