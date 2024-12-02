@@ -1,0 +1,41 @@
+/*
+ * Cacabilos, Lee Rogie R.
+ * CC2 1B
+ * Final Challenge No. 5: Exception Handling Laboratory Challenges
+ * 12/02/24
+ */
+class InsufficientFundsException extends Exception {
+    public InsufficientFundsException(String message) {
+        super(message);
+    }
+}
+
+public class BankingSystem {
+    public static void main(String[] args) {
+        double currentBalance = 500.00; // Initial account balance
+        try {
+            // Prompt the user to enter the withdrawal amount
+            String withdrawalInput = javax.swing.JOptionPane.showInputDialog("Enter the amount you wish to withdraw:");
+            double withdrawalAmount = Double.parseDouble(withdrawalInput);
+
+            // Process the withdrawal
+            withdraw(currentBalance, withdrawalAmount);
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                String.format("Withdrawal successful! Your new balance is: ₱%.2f", currentBalance - withdrawalAmount));
+        } catch (InsufficientFundsException e) {
+            javax.swing.JOptionPane.showMessageDialog(null, e.getMessage(), "Transaction Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "Invalid input. Please provide a valid number.", "Input Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Method to validate and execute the withdrawal
+    public static void withdraw(double balance, double amount) throws InsufficientFundsException {
+        if (amount > balance) {
+            throw new InsufficientFundsException("Transaction failed. The withdrawal amount exceeds your current balance.");
+        } else if (amount <= 0) {
+            throw new InsufficientFundsException("Transaction failed. Please enter a positive withdrawal amount.");
+        }
+    }
+}
