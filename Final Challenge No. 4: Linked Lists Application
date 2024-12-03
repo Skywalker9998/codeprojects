@@ -1,0 +1,154 @@
+/*
+ * Cacabilos, Lee Rogie R.
+ * CC2 1B
+ * Final Challenge No. 4: Linked Lists Application
+ * 12/02/24
+ */
+import java.util.Scanner;
+
+// Node class to represent each song in the playlist
+class SongNode {
+    String title;
+    SongNode prev, next;
+
+    public SongNode(String title) {
+        this.title = title;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+// Circular Doubly Linked List for Music Playlist
+public class MusicPlaylist {
+    private SongNode current;
+
+    // Add a song to the playlist
+    public void addSong(String title) {
+        SongNode newNode = new SongNode(title);
+        if (current == null) {
+            // Initialize circular structure
+            current = newNode;
+            current.next = current;
+            current.prev = current;
+        } else {
+            SongNode last = current.prev;
+            last.next = newNode;
+            newNode.prev = last;
+            newNode.next = current;
+            current.prev = newNode;
+        }
+        System.out.println("Added song: " + title);
+    }
+
+    // Remove the current song from the playlist
+    public void removeCurrentSong() {
+        if (current == null) {
+            System.out.println("The playlist is empty. Nothing to remove.");
+            return;
+        }
+        if (current.next == current) {
+            // Only one song in the playlist
+            System.out.println("Removed song: " + current.title);
+            current = null;
+        } else {
+            System.out.println("Removed song: " + current.title);
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+            current = current.next;
+        }
+    }
+
+    // Move to the next song
+    public void nextSong() {
+        if (current != null) {
+            current = current.next;
+            System.out.println("Now playing: " + current.title);
+        } else {
+            System.out.println("The playlist is empty.");
+        }
+    }
+
+    // Move to the previous song
+    public void previousSong() {
+        if (current != null) {
+            current = current.prev;
+            System.out.println("Now playing: " + current.title);
+        } else {
+            System.out.println("The playlist is empty.");
+        }
+    }
+
+    // Display the current song
+    public void displayCurrentSong() {
+        if (current != null) {
+            System.out.println("Currently playing: " + current.title);
+        } else {
+            System.out.println("The playlist is empty.");
+        }
+    }
+
+    // Display all songs in the playlist
+    public void displayPlaylist() {
+        if (current == null) {
+            System.out.println("The playlist is empty.");
+            return;
+        }
+        System.out.println("Playlist:");
+        SongNode temp = current;
+        do {
+            System.out.println("- " + temp.title);
+            temp = temp.next;
+        } while (temp != current);
+    }
+
+    // Main method for user interaction
+    public static void main(String[] args) {
+        MusicPlaylist playlist = new MusicPlaylist();
+        Scanner lee = new Scanner(System.in); // Renamed Scanner instance to "lee"
+        int choice;
+
+        do {
+            System.out.println("\nMusic Playlist Manager:");
+            System.out.println("1. Add a song");
+            System.out.println("2. Remove current song");
+            System.out.println("3. Next song");
+            System.out.println("4. Previous song");
+            System.out.println("5. Display current song");
+            System.out.println("6. Display entire playlist");
+            System.out.println("7. Exit");
+            System.out.print("Choose an option: ");
+            choice = lee.nextInt();
+            lee.nextLine(); // Consume the newline
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the song title: ");
+                    String title = lee.nextLine();
+                    playlist.addSong(title);
+                    break;
+                case 2:
+                    playlist.removeCurrentSong();
+                    break;
+                case 3:
+                    playlist.nextSong();
+                    break;
+                case 4:
+                    playlist.previousSong();
+                    break;
+                case 5:
+                    playlist.displayCurrentSong();
+                    break;
+                case 6:
+                    playlist.displayPlaylist();
+                    break;
+                case 7:
+                    System.out.println("Exiting the Music Playlist Manager.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 7);
+
+        lee.close(); // Close the Scanner
+    }
+}
