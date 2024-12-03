@@ -1,0 +1,41 @@
+/*
+ * Cacabilos, Lee Rogie R.
+ * CC2 1B
+ * Final Challenge No. 5: Exception Handling Laboratory Challenges
+ * 12/02/24
+ */
+class InvalidQuantityException extends Exception {
+    public InvalidQuantityException(String message) {
+        super(message);
+    }
+}
+
+public class OnlineShoppingCart {
+    public static void main(String[] args) {
+        int stockQuantity = 20; // Example stock quantity
+        try {
+            // User inputs the product quantity
+            String quantityInput = javax.swing.JOptionPane.showInputDialog("Enter the quantity to add to your cart:");
+            int quantity = Integer.parseInt(quantityInput);
+
+            // Validate quantity
+            validateQuantity(stockQuantity, quantity);
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                String.format("Added %d items to your cart successfully!", quantity));
+        } catch (InvalidQuantityException e) {
+            javax.swing.JOptionPane.showMessageDialog(null, e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "Invalid input. Please enter a numeric value.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Method to validate product quantity
+    public static void validateQuantity(int stock, int quantity) throws InvalidQuantityException {
+        if (quantity < 0) {
+            throw new InvalidQuantityException("Invalid quantity. Quantity cannot be negative.");
+        } else if (quantity > stock) {
+            throw new InvalidQuantityException("Invalid quantity. Requested quantity exceeds available stock.");
+        }
+    }
+}
