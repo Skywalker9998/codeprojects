@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        
+        header {
+            background: #1a1a1a;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            color: #00bcd4;
+            font-size: 1.8rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00bcd4;
+        }
+
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            background: #00bcd4;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .hero button:hover {
+            background: #007b8d;
+        }
+
+        
+        #about {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #about img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #00bcd4;
+        }
+
+        #about h2 {
+            font-size: 2rem;
+            color: #00bcd4;
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        
+        #skills {
+            background: #1a1a1a;
+            padding: 60px 20px;
+        }
+
+        #skills h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #00bcd4;
+            margin-bottom: 40px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            padding: 20px;
+            background: #121212;
+            border-radius: 8px;
+        }
+
+        .skill-category h3 {
+            color: #00bcd4;
+            margin-bottom: 20px;
+        }
+
+        .skill {
+            margin-bottom: 15px;
+        }
+
+        .skill h4 {
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar span {
+            display: block;
+            height: 100%;
+            background: #00bcd4;
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        
+        #contact {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2rem;
+            color: #00bcd4;
+            margin-bottom: 40px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        form .form-group {
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background: #121212;
+            color: #e0e0e0;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: #00bcd4;
+            box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+        }
+
+        form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #00bcd4;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #007b8d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Portfolio</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+   
+    <section class="hero">
+        <h1>Hi, I'm Lee Rogie Cacabilos</h1>
+        <p>Currently pursuing an IT degree and passionate about technology and innovation.</p>
+        <button>Hire Me</button>
+    </section>
+
+   
+    <section id="about">
+        <img src="https://static.demilked.com/wp-content/uploads/2023/05/cute-cat-pics-1.jpeg" alt="Profile Picture">
+        <h2>About Me</h2>
+        <p>
+            Currently pursuing an IT degree, I am passionate about technology and developing user-friendly web applications. I enjoy solving challenging problems.
+        </p>
+    </section>
+
+   
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+           
+            <div class="skill-category">
+                <h3>Coding Skills</h3>
+                <div class="skill">
+                    <h4>HTML</h4>
+                    <div class="skill-bar"><span style="width: 90%;"></span></div>
+                </div>
+                <div class="skill">
+                    <h4>CSS</h4>
+                    <div class="skill-bar"><span style="width: 85%;"></span></div>
+                </div>
+                <div class="skill">
+                    <h4>JavaScript</h4>
+                    <div class="skill-bar"><span style="width: 75%;"></span></div>
+                </div>
+                <div class="skill">
+                    <h4>Java</h4>
+                    <div class="skill-bar"><span style="width: 80%;"></span></div>
+                </div>
+                <div class="skill">
+                    <h4>Python</h4>
+                    <div class="skill-bar"><span style="width: 70%;"></span></div>
+                </div>
+            </div>
+         
+            <div class="skill-category">
+                <h3>Professional Skills</h3>
+                <div class="skill">
+                    <h4>Problem Solving</h4>
+                    <div class="skill-bar"><span style="width: 80%;"></span></div>
+                </div>
+                <div class="skill">
+                    <h4>Teamwork</h4>
+                    <div class="skill-bar"><span style="width: 85%;"></span></div>
+                </div>
+                <div class="skill">
+                    <h4>Communication</h4>
+                    <div class="skill-bar"><span style="width: 70%;"></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</body>
+</html>
